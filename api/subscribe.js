@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { email } = req.body;
 
   try {
-    const response = await fetch("https://a.klaviyo.com/api/profiles/", {
+    const response = await fetch("https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,16 +15,27 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         data: {
-          type: "profile",
+          type: "profile-subscription-bulk-create-job",
           attributes: {
-            email: email
+            list_id: "W5MMJH",
+            profiles: {
+              data: [
+                {
+                  type: "profile",
+                  attributes: {
+                    email: email
+                  }
+                }
+              ]
+            }
           }
         }
       })
     });
 
     if (!response.ok) {
-      throw new Error("Klaviyo error");
+      const errorText = await response.text();
+      return res.status(500).json({ error: errorText });
     }
 
     res.status(200).json({ success: true });
