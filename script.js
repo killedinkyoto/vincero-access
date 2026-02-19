@@ -41,7 +41,24 @@ function animate() {
 animate();
 
 // Form submit
-document.getElementById("accessForm").addEventListener("submit", function(e){
+document.getElementById("accessForm").addEventListener("submit", async function(e){
     e.preventDefault();
-    window.location.href = "https://vincerorelics.com/products/early-access";
+
+    const email = document.getElementById("email").value;
+
+    const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+    });
+
+    if (response.ok) {
+        window.location.href = "https://vincerorelics.com/products/priority-drop-access";
+    } else {
+        alert("Something went wrong.");
+    }
 });
+
+
