@@ -17,7 +17,6 @@ export default async function handler(req, res) {
         data: {
           type: "profile-subscription-bulk-create-job",
           attributes: {
-            list_id: "W5MMJH",
             profiles: {
               data: [
                 {
@@ -27,6 +26,14 @@ export default async function handler(req, res) {
                   }
                 }
               ]
+            }
+          },
+          relationships: {
+            list: {
+              data: {
+                type: "list",
+                id: "W5MMJH"
+              }
             }
           }
         }
