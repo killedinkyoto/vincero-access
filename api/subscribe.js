@@ -1,3 +1,7 @@
+import Redis from "ioredis";
+
+const redis = new Redis(process.env.REDIS_URL);
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -44,8 +48,14 @@ export default async function handler(req, res) {
       const errorText = await response.text();
       return res.status(500).json({ error: errorText });
     }
+    let remaining = await redis.decr("spots_remaining");
 
-    res.status(200).json({ success: true });
+    if (remaining < 0) {
+      remaining = 0;
+      await redis.set("spots_remaining", 0);
+}
+
+    res.status(200).json({ success: true, remaining });
 
   } catch (error) {
     res.status(500).json({ error: "Subscription failed" });
