@@ -6,7 +6,8 @@
 
 body {
     background: black;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -33,14 +34,17 @@ canvas {
 }
 
 h1 {
-    font-size: 28px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 p {
-    opacity: 0.8;
+    opacity: 0.85;
     margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
 .scarcity {
@@ -50,7 +54,7 @@ p {
 
 #spots {
     color: #6C63FF;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 input {
@@ -61,6 +65,8 @@ input {
     background: rgba(255,255,255,0.1);
     color: white;
     margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
 }
 
 button {
@@ -73,6 +79,9 @@ button {
     cursor: pointer;
     position: relative;
     transition: 0.3s;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
 button:hover {
